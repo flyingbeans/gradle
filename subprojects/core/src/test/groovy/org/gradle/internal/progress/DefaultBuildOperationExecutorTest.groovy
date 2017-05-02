@@ -18,8 +18,6 @@ package org.gradle.internal.progress
 
 import org.gradle.internal.concurrent.ExecutorFactory
 import org.gradle.internal.concurrent.GradleThread
-import org.gradle.internal.logging.progress.ProgressLogger
-import org.gradle.internal.logging.progress.ProgressLoggerFactory
 import org.gradle.internal.operations.BuildOperationContext
 import org.gradle.internal.operations.BuildOperationQueueFactory
 import org.gradle.internal.operations.CallableBuildOperation
@@ -646,63 +644,5 @@ class DefaultBuildOperationExecutorTest extends ConcurrentSpec {
         BuildOperationDescriptor.Builder description() { displayName("test") }
         String toString() { getClass().simpleName }
         void run(BuildOperationContext buildOperationContext) {}
-    }
-
-    static class TestProgressLoggerFactory implements ProgressLoggerFactory {
-        ProgressLogger newOperation(String loggerCategory) {
-            throw new UnsupportedOperationException()
-        }
-
-        ProgressLogger newOperation(Class<?> loggerCategory) {
-            throw new UnsupportedOperationException()
-        }
-
-        ProgressLogger newOperation(Class<?> loggerCategory, BuildOperationDescriptor buildOperationDescriptor) {
-            return new TestProgressLogger()
-        }
-
-        ProgressLogger newOperation(Class<?> loggerClass, ProgressLogger parent) {
-            throw new UnsupportedOperationException()
-        }
-    }
-
-    static class TestProgressLogger implements ProgressLogger {
-        String description
-        String shortDescription
-        String loggingHeader
-
-        String getDescription() { description }
-
-        ProgressLogger setDescription(String description) {
-            this.description = description
-            this
-        }
-
-        String getShortDescription() { shortDescription }
-
-        ProgressLogger setShortDescription(String description) {
-            this.shortDescription = description
-            this
-        }
-
-        String getLoggingHeader() { loggingHeader }
-
-        ProgressLogger setLoggingHeader(String header) {
-            this.loggingHeader = header
-            this
-        }
-
-        ProgressLogger start(String description, String shortDescription) {
-            setDescription(description)
-            setShortDescription(shortDescription)
-            started()
-            this
-        }
-
-        void started() {}
-        void started(String status) {}
-        void progress(String status) {}
-        void completed() {}
-        void completed(String status) {}
     }
 }

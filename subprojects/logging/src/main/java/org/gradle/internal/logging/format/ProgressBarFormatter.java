@@ -43,6 +43,8 @@ public class ProgressBarFormatter {
 
     public void increment() {
         if (current == total) {
+            // 17:04:18.926 [DEBUG] [org.gradle.internal.progress.DefaultBuildOperationExecutor] Completing Build operation 'Apply plugin org.gradle.help-tasks to root project 'gradle-js-plugin''
+            // FIXME(ew): Sometimes getting "Cannot increment beyond the total of: 1"
             throw new IllegalStateException("Cannot increment beyond the total of: " + total);
         }
         current++;

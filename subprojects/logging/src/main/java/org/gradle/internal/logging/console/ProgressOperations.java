@@ -47,6 +47,8 @@ public class ProgressOperations {
     public ProgressOperation complete(OperationIdentifier operationId) {
         ProgressOperation op = operationsById.remove(operationId);
         if (op == null) {
+            // 16:51:19.268 [DEBUG] [org.gradle.internal.progress.DefaultBuildOperationExecutor] Completing Build operation 'Apply plugin org.gradle.help-tasks to root project 'gradle-js-plugin''
+            // FIXME(ew): Received complete event for an unknown operation (id: 4)
             throw new IllegalStateException("Received complete event for an unknown operation (id: " + operationId + ")");
         }
         return op;

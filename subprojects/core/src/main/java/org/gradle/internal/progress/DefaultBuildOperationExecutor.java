@@ -175,6 +175,7 @@ public class DefaultBuildOperationExecutor implements BuildOperationExecutor, St
                 try {
                     worker.execute(buildOperation, context);
                 } finally {
+                    LOGGER.debug("Completing Build operation '{}'", descriptor.getDisplayName());
                     progressLogger.completed();
                 }
                 assertParentRunning("Parent operation (%2$s) completed before this operation (%1$s).", descriptor, parent);
