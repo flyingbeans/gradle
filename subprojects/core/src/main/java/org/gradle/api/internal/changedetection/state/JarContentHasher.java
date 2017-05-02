@@ -33,13 +33,13 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipInputStream;
 
 /**
- * Hashes the contents of a jar file with the given {@link ContentHasher}.
+ * Hashes the contents of a jar file with the given {@link ResourceHasher}.
  */
-public class JarContentHasher implements ContentHasher {
-    private final ContentHasher contentHasher;
+public class JarContentHasher implements ResourceHasher {
+    private final ResourceHasher contentHasher;
     private final StringInterner stringInterner;
 
-    public JarContentHasher(ContentHasher contentHasher, StringInterner stringInterner) {
+    public JarContentHasher(ResourceHasher contentHasher, StringInterner stringInterner) {
         this.contentHasher = contentHasher;
         this.stringInterner = stringInterner;
     }
